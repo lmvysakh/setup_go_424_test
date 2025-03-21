@@ -1,0 +1,26 @@
+name: Go Workflow
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Go
+      uses: actions/setup-go@v4
+      with:
+        go-version-file: 'go.mod'
+    - name: Cache Go Modules
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/go/pkg/mod
+          ~/go/bin
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+    - run: go version
+    - run: go build
+    - run: go test ./...
+
+
+#first check
