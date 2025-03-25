@@ -1,5 +1,12 @@
+#module example.com/m
+
+#go 1.21.0
+
+#toolchain go1.21.1
+
+
 module example.com/m
 
-go 1.21.0
+go 1.21.3
 
 toolchain go1.21.1
